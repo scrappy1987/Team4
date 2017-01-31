@@ -148,6 +148,15 @@
 			<version>1.9.5</version>
 		</dependency>
 
+        
+         <!-- This (hopefully) adds Mokito to the project so we can run out unit tests 
+         without having to implement the entire database.-->
+        <dependency>
+    		<groupId>org.mockito</groupId>
+    		<artifactId>mockito-all</artifactId>
+    		<version>1.9.5</version>
+    		<scope>test</scope>
+		</dependency>
 
 		<!-- Annotation processor to generate the JPA 2.0 metamodel classes for 
 			typesafe criteria queries -->
