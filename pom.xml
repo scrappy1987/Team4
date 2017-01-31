@@ -5,7 +5,7 @@
 
     <groupId>com.qa.student</groupId>
     <artifactId>TeamProject4</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version> 
     <packaging>war</packaging>
     <name>TeamProject</name>
     <description>A starter Java EE 6 webapp project for use on JBoss EAP 6, generated from the jboss-javaee6-webapp archetype</description>
