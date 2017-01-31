@@ -48,6 +48,28 @@ public class Film {
 	@Column(name = "audioDescription")
 	private boolean audioDescription;
 
+	public Film(){
+		
+	}
+	
+	public Film(long filmId, String title, String releaseDate,
+			String description, long actorId, String classification,
+			String duration, int starRating, String genre, String language,
+			String subtitle, boolean audioDescription) {
+		this.filmId = filmId;
+		this.title = title;
+		this.releaseDate = releaseDate;
+		this.description = description;
+		this.actorId = actorId;
+		this.classification = classification;
+		this.duration = duration;
+		this.starRating = starRating;
+		this.genre = genre;
+		this.language = language;
+		this.subtitle = subtitle;
+		this.audioDescription = audioDescription;
+	}
+
 	public long getFilmId() {
 		return filmId;
 	}

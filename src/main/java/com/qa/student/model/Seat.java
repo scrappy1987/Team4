@@ -18,6 +18,16 @@ public class Seat {
 	
 	private long ticketId;
 
+	public Seat(){
+		
+	}
+	public Seat(long seatId, int standardSeats, int prioritySeats, long ticketId) {
+		this.seatId = seatId;
+		this.standardSeats = standardSeats;
+		this.prioritySeats = prioritySeats;
+		this.ticketId = ticketId;
+	}
+
 	public long getSeatId() {
 		return seatId;
 	}
