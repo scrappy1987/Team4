@@ -40,7 +40,7 @@ public class BookingServiceTest {
 		Mockito.when(query.getResultList()).thenReturn(ticketList);
 		// test the add functionality
 		List<Ticket> assertionList = bookingService.getAllTickets();
-		Assert.assertEquals(assertionList.get(0).getCinemaId(), new Long(1));
+		Assert.assertEquals(assertionList.get(0).getCinemaId(), 1);
 		// verify the behavior
 		Mockito.verify(em).createQuery(Mockito.anyString());
 	}
