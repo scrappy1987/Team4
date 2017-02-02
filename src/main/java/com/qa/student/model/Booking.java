@@ -7,7 +7,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -24,6 +26,11 @@ public class Booking {
 	@NotNull
 	private long screenId;
 	
+	@NotNull
+	@OneToOne
+	@JoinColumn(name="customerId")
+	private long customerId;
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Ticket> tickets = new HashSet<Ticket>();
 	
@@ -31,24 +38,15 @@ public class Booking {
 		
 	}
 
-	public Booking(long id, long screenId) {
-		super();
+	public Booking(long id, long screenId, long customerId) {
 		this.id = id;
-		//this.ticketId = ticketId;
 		this.screenId = screenId;
+		this.customerId = customerId;
 	}
 
 	public long getId() {
 		return id;
 	}
-
-	/*public Long getTicketId() {
-		return ticketId;
-	}
-
-	public void setTicketId(Long ticketId) {
-		this.ticketId = ticketId;
-	}*/
 
 	public long getScreenId() {
 		return screenId;
@@ -66,4 +64,11 @@ public class Booking {
 		this.tickets = tickets;
 	}
 
+	@Override
+	public String toString() {
+		return "Booking [id=" + id + ", screenId=" + screenId + ", customerId=" + customerId + ", tickets=" + tickets
+				+ "]";
+	}
+
+	
 }

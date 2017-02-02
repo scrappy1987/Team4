@@ -33,10 +33,23 @@ public class Event {
 		CONCERT, PLAY, DANCE, MAGIC, SPORT
 	}
 	
+	
 		
 	public Event(){
 		
 	}
+	
+	public Event(long eventID, String eventTitle, String eventDate, String eventDescription, int eventDuration,
+			int eventFiveStarRating) {
+		this.eventID = eventID;
+		this.eventTitle = eventTitle;
+		this.eventDate = eventDate;
+		this.eventDescription = eventDescription;
+		this.eventDuration = eventDuration;
+		this.eventFiveStarRating = eventFiveStarRating;
+	}
+
+
 
 
 	public long getEventID() {
@@ -96,6 +109,13 @@ public class Event {
 
 	public void setEventFiveStarRating(int eventFiveStarRating) {
 		this.eventFiveStarRating = eventFiveStarRating;
+	}
+
+	@Override
+	public String toString() {
+		return "Event [eventID=" + eventID + ", eventTitle=" + eventTitle + ", eventDate=" + eventDate
+				+ ", eventDescription=" + eventDescription + ", eventDuration=" + eventDuration
+				+ ", eventFiveStarRating=" + eventFiveStarRating + "]";
 	}
 	
 	

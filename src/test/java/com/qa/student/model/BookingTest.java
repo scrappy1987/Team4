@@ -1,28 +1,17 @@
 package com.qa.student.model;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.swing.text.html.HTMLDocument.Iterator;
-
-import org.junit.Assert;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-
 import com.qa.student.model.Booking;
-import com.qa.student.rest.BookingService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BookingTest {

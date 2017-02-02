@@ -1,12 +1,15 @@
 package com.qa.student.model;
 
 
-//import javax.persistence.CascadeType;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-//import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Film {
@@ -48,6 +51,9 @@ public class Film {
 	@Column(name = "audioDescription")
 	private boolean audioDescription;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<Actor> actors = new HashSet<Actor>();
+	
 	public Film(){
 		
 	}
@@ -167,6 +173,15 @@ public class Film {
 		this.audioDescription = audioDescription;
 	}
 
+	
+
+	public Set<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(Set<Actor> actors) {
+		this.actors = actors;
+	}
 
 	@Override
 	public String toString() {

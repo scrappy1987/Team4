@@ -66,9 +66,9 @@ public class TicketTest {
 	}
 	@Test
 	public void setGetSeatId() {
-		ticket.setSeatId("L12");
-		Mockito.when(ticket.getSeatId()).thenReturn("L12");
-		assertEquals(ticket.getSeatId(),"L12");
+		ticket.setSeatId((long) 1);
+		Mockito.when(ticket.getSeatId()).thenReturn((long) 1);
+		assertEquals(ticket.getSeatId(),1);
 	}
 	@Test
 	public void setGetScreenId() {

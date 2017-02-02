@@ -1,9 +1,15 @@
 package com.qa.student.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Screen {
@@ -12,22 +18,34 @@ public class Screen {
 	@GeneratedValue
 	private long screenID;
 	
-	@Id
-	@GeneratedValue
+	@OneToOne
+	@JoinColumn(name="cinemaID")
 	private long cinemaID;
 	
-	@Id
-	@GeneratedValue
+	@OneToOne
+	@JoinColumn(name="filmID")
 	private long filmID;
 	
-	@Id
-	@GeneratedValue
+
+
+	@OneToOne
+	@JoinColumn(name="eventID")
 	private long eventID;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<Showing> showings = new HashSet<Showing>();
 		
 	public Screen(){
 		
 	}
 	
+	public Screen(long screenID, long cinemaID, long filmID, long eventID) {
+		this.screenID = screenID;
+		this.cinemaID = cinemaID;
+		this.filmID = filmID;
+		this.eventID = eventID;
+	}
+
 	public long getScreenID() {
 		return screenID;
 	}
@@ -59,4 +77,20 @@ public class Screen {
 	public void setEventID(long eventID) {
 		this.eventID = eventID;
 	}
+	
+	public Set<Showing> getShowings() {
+		return showings;
+	}
+
+	public void setShowings(Set<Showing> showings) {
+		this.showings = showings;
+	}
+
+	@Override
+	public String toString() {
+		return "Screen [screenID=" + screenID + ", cinemaID=" + cinemaID + ", filmID=" + filmID + ", eventID=" + eventID
+				+ ", showings=" + showings + "]";
+	}
+	
+	
 }

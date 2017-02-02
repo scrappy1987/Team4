@@ -1,8 +1,13 @@
 package com.qa.student.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -23,11 +28,26 @@ public class Customer {
 	@NotNull
 	private short age;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<Booking> bookings = new HashSet<Booking>();
+	
 	//Constructor
 	public Customer() {
 	}
 	
 	
+	
+	public Customer(Long customerId, String fName, String lName, String email, String password, short age) {
+		this.customerId = customerId;
+		this.fName = fName;
+		this.lName = lName;
+		this.email = email;
+		this.password = password;
+		this.age = age;
+	}
+
+
+
 	//Getters and Setters
 	public long getCustomerId() {
 		return customerId;
@@ -86,6 +106,22 @@ public class Customer {
 
 	public void setAge(short age) {
 		this.age = age;
+	}
+
+	public Set<Booking> getBookings(){
+		return bookings;
+	}
+	
+	public void setBookings(Set<Booking> bookings){
+		this.bookings = bookings;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", fName=" + fName + ", lName=" + lName + ", email=" + email
+				+ ", password=" + password + ", age=" + age + ", bookings=" + bookings + "]";
 	}
 
 	
