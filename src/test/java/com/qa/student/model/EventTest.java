@@ -1,11 +1,8 @@
 package com.qa.student.model;
 
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -18,44 +15,55 @@ import com.qa.student.rest.EventService;
 @RunWith(MockitoJUnitRunner.class)
 public class EventTest {
 
-	@InjectMocks
-	EventService eventService = new EventService();
-	
-	@Mock
-	EntityManager em;
-	
-	 @Mock
-	 Query query; 
-	
-	@Test 
-	public void EventScreen() { 
-		List<Event> eventList = new ArrayList<Event>();
-		
-		Event testEvent = new Event();
-		testEvent.setEventID(101L);
-		testEvent.setEventTitle("Tea in the Park");
-		testEvent.setEventDate("10/04/18");
-		testEvent.setEventDescription("Food & Drink");
-		testEvent.setEventDuration(3);
-		testEvent.setEventFiveStarRating(5);
+    @InjectMocks
+    EventService eventService = new EventService();
+    Event event = Mockito.mock(Event.class);
+    
+    @Mock
+    EntityManager em;
+    
+    @Mock
+    Query query; 
+    
+    @Test
+    public void eventIdTest(){
+        Mockito.when(event.getEventID()).thenReturn((long)1);
+        assertEquals(event.getEventID(),1);
+    }
+    
+    @Test
+    public void eventTitleTest(){
+        event.setEventTitle("Tea in the Park");
+        Mockito.when(event.getEventTitle()).thenReturn("Tea in the Park");
+        assertEquals(event.getEventTitle(),"Tea in the Park");
+    }
+    
+    @Test
+    public void eventDateTest(){
+        event.setEventDate("10/04/18");
+        Mockito.when(event.getEventDate()).thenReturn("10/04/18");
+        assertEquals(event.getEventDate(),"10/04/18");
+    }
+    
+    @Test
+    public void eventDescriptionTest(){
+        event.setEventDescription("Food & Drink");
+        Mockito.when(event.getEventDescription()).thenReturn("Food & Drink");
+        assertEquals(event.getEventDescription(),"Food & Drink");
+    }
+    
+    @Test
+    public void eventDurationTest(){
+        event.setEventDuration(3);
+        Mockito.when(event.getEventDuration()).thenReturn(3);
+        assertEquals(event.getEventDuration(),3);
+    }
+    
+    @Test
+    public void eventFiveStarRatingTest(){
+        event.setEventFiveStarRating(5);
+        Mockito.when(event.getEventFiveStarRating()).thenReturn(5);
+        assertEquals(event.getEventFiveStarRating(),5);
+    }
 
-		
-		eventList.add(testEvent);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);		
-		Mockito.when(query.getResultList()).thenReturn(eventList);
-		
-		//test add functionality
-		List<Event>assertionList = eventService.getAllEvents();
-		Assert.assertEquals(assertionList.get(0).getEventID(), 101);
-		Assert.assertEquals(assertionList.get(0).getEventTitle(), "Tea in the Park");
-		Assert.assertEquals(assertionList.get(0).getEventDate(), "10/04/18");
-		Assert.assertEquals(assertionList.get(0).getEventDescription(), "Food & Drink");
-		Assert.assertEquals(assertionList.get(0).getEventDuration(), 3);
-		Assert.assertEquals(assertionList.get(0).getEventFiveStarRating(), 5);
-		
-		
-		//verify the behavior
-		Mockito.verify(em).createQuery(Mockito.anyString());		
-	}
 }

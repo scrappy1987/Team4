@@ -1,122 +1,63 @@
- package com.qa.student.model;
- import java.util.ArrayList;
- import java.util.List;
+package com.qa.student.model;
 
- import javax.persistence.EntityManager;
- import javax.persistence.Query;
+import static org.junit.Assert.assertEquals;
 
- import org.junit.Assert;
- import org.junit.Test;
- import org.junit.runner.RunWith;
- import org.mockito.InjectMocks;
- import org.mockito.Mock;
- import org.mockito.Mockito;
- import org.mockito.runners.MockitoJUnitRunner;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
- import com.qa.student.model.Customer;
- import com.qa.student.rest.CustomerService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
- public class CustomerTest {
+public class CustomerTest {
 
- @InjectMocks
-  CustomerService customerService = new CustomerService();
+	@InjectMocks
+	Customer customer = Mockito.mock(Customer.class);
 
- @Mock
-  EntityManager em;
+	@Mock
+	EntityManager em;
 
- @Mock
-  Query query;
- 
- @Test
- public void testIdGettersandSetters() {
-  List<Customer> customerList = new ArrayList<Customer>();
-  Customer customer1 = new Customer();
-  customer1.setCustomerId((long)1);
-  customerList.add(customer1);
-  Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-  Mockito.when(query.getResultList()).thenReturn(customerList);
-  // test the add functionality
-  List<Customer> assertionList = customerService.getAllCustomers();
-  Assert.assertEquals(assertionList.get(0).getCustomerId(), 1);
-  // verify the behavior
-  Mockito.verify(em).createQuery(Mockito.anyString());
- }
+	@Mock
+	Query query;
 
- @Test
-  public void testFNameGettersandSetters() {
-   List<Customer> customerList = new ArrayList<Customer>();
-   Customer customer1 = new Customer();
-   customer1.setfName("firstname");
-   customerList.add(customer1);
-   Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-   Mockito.when(query.getResultList()).thenReturn(customerList);
-   // test the add functionality
-   List<Customer> assertionList = customerService.getAllCustomers();
-   Assert.assertEquals(assertionList.get(0).getfName(), "firstname");
-   // verify the behavior
-   Mockito.verify(em).createQuery(Mockito.anyString());
-  }
+	@Test
+	public void testIdGettersandSetters() {
+		Mockito.when(customer.getCustomerId()).thenReturn((long) 1);
+		assertEquals(customer.getCustomerId(), 1);
+	}
 
- @Test
- public void testLNameGettersandSetters() {
-  List<Customer> customerList = new ArrayList<Customer>();
-  Customer customer1 = new Customer();
-  customer1.setlName("lastname");
-  customerList.add(customer1);
-  Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-  Mockito.when(query.getResultList()).thenReturn(customerList);
-  // test the add functionality
-  List<Customer> assertionList = customerService.getAllCustomers();
-  Assert.assertEquals(assertionList.get(0).getlName(), "lastname");
-  // verify the behavior
-  Mockito.verify(em).createQuery(Mockito.anyString());
- }
+	@Test
+	public void testFNameGettersandSetters() {
+		Mockito.when(customer.getfName()).thenReturn("Bob");
+		assertEquals(customer.getfName(), "Bob");
+	}
 
- @Test
- public void testEmailGettersandSetters() {
-  List<Customer> customerList = new ArrayList<Customer>();
-  Customer customer1 = new Customer();
-  customer1.setEmail("email");
-  customerList.add(customer1);
-  Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-  Mockito.when(query.getResultList()).thenReturn(customerList);
-  // test the add functionality
-  List<Customer> assertionList = customerService.getAllCustomers();
-  Assert.assertEquals(assertionList.get(0).getEmail(), "email");
-  // verify the behavior
-  Mockito.verify(em).createQuery(Mockito.anyString());
- }
+	@Test
+	public void testLNameGettersandSetters() {
+		Mockito.when(customer.getlName()).thenReturn("Smith");
+		assertEquals(customer.getlName(), "Smith");
+	}
 
- @Test
- public void testPasswordGettersandSetters() {
-  List<Customer> customerList = new ArrayList<Customer>();
-  Customer customer1 = new Customer();
-  customer1.setPassword("password");
-  customerList.add(customer1);
-  Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-  Mockito.when(query.getResultList()).thenReturn(customerList);
-  // test the add functionality
-  List<Customer> assertionList = customerService.getAllCustomers();
-  Assert.assertEquals(assertionList.get(0).getPassword(), "password");
-  // verify the behavior
-  Mockito.verify(em).createQuery(Mockito.anyString());
- }
+	@Test
+	public void testEmailGettersandSetters() {
+		Mockito.when(customer.getEmail()).thenReturn("bob.smith@email.com");
+		assertEquals(customer.getEmail(), "bob.smith@email.com");
+	}
 
- @Test
- public void testAgeGettersandSetters() {
-  List<Customer> customerList = new ArrayList<Customer>();
-  Customer customer1 = new Customer();
-  customer1.setAge((short)1);
-  customerList.add(customer1);
-  Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-  Mockito.when(query.getResultList()).thenReturn(customerList);
-  // test the add functionality
-  List<Customer> assertionList = customerService.getAllCustomers();
-  Assert.assertEquals(assertionList.get(0).getAge(), 1);
-  // verify the behavior
-  Mockito.verify(em).createQuery(Mockito.anyString());
- }
+	@Test
+	public void testPasswordGettersandSetters() {
+		Mockito.when(customer.getPassword()).thenReturn("pass");
+		assertEquals(customer.getPassword(), "pass");
+	}
+
+	@Test
+	public void testAgeGettersandSetters() {
+		Mockito.when(customer.getAge()).thenReturn((short) 2);
+		assertEquals(customer.getAge(), 2);
+	}
 
 }
-

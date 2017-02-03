@@ -16,13 +16,14 @@ import com.qa.student.model.Seat;
 @RequestScoped
 public class SeatService {
 
-		@Inject
-		private EntityManager em;
+	@Inject
+	private EntityManager em;
 
-		@GET
-		@Produces(MediaType.APPLICATION_JSON)
-		public List<Seat> getAllSeats() {
-			final List<Seat> results = em.createQuery("select s from Seat s order by s.seatid").getResultList();
-			return results;
-		}
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Seat> getAllSeats() {
+		final List<Seat> results = em.createQuery(
+				"select s from Seat s order by s.seatid").getResultList();
+		return results;
 	}
+}

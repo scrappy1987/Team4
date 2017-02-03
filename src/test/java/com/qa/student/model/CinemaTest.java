@@ -1,10 +1,8 @@
 package com.qa.student.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,44 +10,50 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.qa.student.model.Cinema;
-import com.qa.student.rest.CinemaService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CinemaTest {
 	@InjectMocks
-	CinemaService cinemaService = new CinemaService();
-	
+	Cinema cinema = Mockito.mock(Cinema.class);
+
 	@Mock
 	EntityManager em;
-	
-	 @Mock
-	 Query query;
-	
+
+	@Mock
+	Query query;
+
 	@Test
-	public void TestCinema() {
-		List<Cinema> cinemaList = new ArrayList<Cinema>();
-		
-		Cinema testCinema = new Cinema();
-		testCinema.setCinemaID(101L);
-		testCinema.setCinemaAddress("64 Zoo Lane");
-		testCinema.setCinemaContactNumber("0800001066");
-		testCinema.setCinemaScreenAmount(7);
-		testCinema.setCinemaManager("Mr. Manager");
-		
-		cinemaList.add(testCinema);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);		
-		Mockito.when(query.getResultList()).thenReturn(cinemaList);
-		
-		//test add functionality
-		List<Cinema>assertionList = cinemaService.getAllCinemas();
-		Assert.assertEquals(assertionList.get(0).getCinemaID(), 101);
-		Assert.assertEquals(assertionList.get(0).getCinemaAddress(), "64 Zoo Lane");	
-		Assert.assertEquals(assertionList.get(0).getCinemaContactNumber(), "0800001066");
-		Assert.assertEquals(assertionList.get(0).getCinemaScreenAmount(), 7);
-		Assert.assertEquals(assertionList.get(0).getCinemaManager(), "Mr. Manager");
-		
-		//verify the behavior
-		Mockito.verify(em).createQuery(Mockito.anyString());		
+	public void cinemaIdTest() {
+		Mockito.when(cinema.getCinemaID()).thenReturn((long) 1);
+		assertEquals(cinema.getCinemaID(), 1);
 	}
+
+	@Test
+	public void cinemaAddressTest() {
+		cinema.setCinemaAddress("64 Zoo Lane");
+		Mockito.when(cinema.getCinemaAddress()).thenReturn("64 Zoo Lane");
+		assertEquals(cinema.getCinemaAddress(), "64 Zoo Lane");
+	}
+
+	@Test
+	public void cinemaContactNumberTest() {
+		cinema.setCinemaContactNumber("0800001066");
+		Mockito.when(cinema.getCinemaContactNumber()).thenReturn("0800001066");
+		assertEquals(cinema.getCinemaContactNumber(), "0800001066");
+	}
+
+	@Test
+	public void cinemaScreenAmountTest() {
+		cinema.setCinemaScreenAmount(7);
+		Mockito.when(cinema.getCinemaScreenAmount()).thenReturn(7);
+		assertEquals(cinema.getCinemaScreenAmount(), 7);
+	}
+
+	@Test
+	public void cinemaManager() {
+		cinema.setCinemaManager("Mr. Manager");
+		Mockito.when(cinema.getCinemaManager()).thenReturn("Mr. Manager");
+		assertEquals(cinema.getCinemaManager(), "Mr. Manager");
+	}
+
 }

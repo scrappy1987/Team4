@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.qa.student.model.Showing;
 
-@Path("/shwoings")
+@Path("/showings")
 @RequestScoped
 public class ShowingService{
 
