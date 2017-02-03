@@ -27,6 +27,14 @@ public class Cinema {
 	public Cinema(){
 		
 	}
+	
+	public Cinema(long cinemaID, String cinemaAddress, String cinemaContactNumber, int cinemaScreenAmount, String cinemaManager){
+		this.cinemaID = cinemaID;
+		this.cinemaAddress = cinemaAddress;
+		this.cinemaContactNumber = cinemaContactNumber;
+		this.cinemaScreenAmount = cinemaScreenAmount;
+		this.cinemaManager = cinemaManager;		
+	}
 
 	public long getCinemaID() {
 		return cinemaID;

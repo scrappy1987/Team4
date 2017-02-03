@@ -1,19 +1,27 @@
 package com.qa.student.rest;
-import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.qa.student.model.Cinema;
 import com.qa.student.model.Film;
+import com.google.gson.Gson;
+public class FilmService 
+{
+	private Map<Integer, Film> filmMap;
+	
+	public FilmService() {
+		filmMap = new HashMap<Integer, Film>();
+		populateMethod();
+	}
+	
+	public String populateMethod() {
+		Film shrek = new Film(1, "Shrek", "02/03/04", "This is a film", 1234l, null, null, 0, null, null, null, false)
+		cinemaMap.put(1, darlington);
 
-@Path("/films")
-@RequestScoped
-public class FilmService {
+		return "Map correctly populated";
+	}
+	
 
 		@Inject
 		private EntityManager em;

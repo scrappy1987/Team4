@@ -1,28 +1,41 @@
 package com.qa.student.rest;
 
-import java.util.List;
-
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.qa.student.model.Cinema;
 
-@Path("/cinemas")
-@RequestScoped
+import com.google.gson.Gson;
+
 public class CinemaService {
 
-	@Inject
-	private EntityManager em;
+	private Map<Integer, Cinema> cinemaMap;
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Cinema> getAllCinemas() {
-		final List<Cinema> results = em.createQuery("select c from Cinema c order by c.cinemaID").getResultList();
-		return results;
+	public CinemaService() {
+		cinemaMap = new HashMap<Integer, Cinema>();
+		populateMethod();
 	}
+
+	public String populateMethod() {
+		Cinema darlington = new Cinema(1, "DARLO", "01325 784596", 5, "Mrs Manager");
+		cinemaMap.put(1, darlington);
+
+		return "Map correctly populated";
+	}
+
+	public String addCinemaToMap(String aCinema) {
+		Gson gson = new Gson();
+		Cinema newCinema = gson.fromJson(aCinema, Cinema.class);
+		cinemaMap.put(3, newCinema);
+		System.out.println("added to map");
+		return "Cinema added to map";
+	}
+
+	public String convertCinemaMapToJSON() {
+		Gson gson = new Gson();
+		String aString = gson.toJson(cinemaMap);
+		return aString;
+		// System.out.println(aString);
+	}
+
 }

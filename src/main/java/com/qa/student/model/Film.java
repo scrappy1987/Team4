@@ -48,10 +48,6 @@ public class Film {
 	@Column(name = "audioDescription")
 	private boolean audioDescription;
 
-	public Film(){
-		
-	}
-	
 	public Film(long filmId, String title, String releaseDate,
 			String description, long actorId, String classification,
 			String duration, int starRating, String genre, String language,

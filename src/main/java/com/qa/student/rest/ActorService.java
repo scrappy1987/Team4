@@ -10,18 +10,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.qa.student.model.Actor;
+import com.qa.student.model.managers.ActorManager;
 
 @Path("/actors")
 @RequestScoped
 public class ActorService {
 
 		@Inject
-		private EntityManager em;
+		private ActorManager actorManager;
 
 		@GET
 		@Produces(MediaType.APPLICATION_JSON)
 		public List<Actor> getAllActors() {
-			final List<Actor> results = em.createQuery("select a from Actor a order by a.firstname").getResultList();
+			List<Actor> results = actorManager.findAllActors();
 			return results;
 		}
 	}
