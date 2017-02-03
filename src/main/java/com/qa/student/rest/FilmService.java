@@ -24,8 +24,8 @@ public class FilmService {
 	@Inject
 	private EntityManager em;
 	
-	@Inject
-	FilmRest filmRest;
+	/*@Inject
+	FilmRest filmRest;*/
 	
 	Calendar calendar = Calendar.getInstance();
 	//calendar.set(2016,02,03);
@@ -40,7 +40,7 @@ public class FilmService {
 	@Produces({ "application/json" })
 	public String addMovieJSON() {
 		
-		filmRest.addFilm(hp);
+		//filmRest.addFilm(hp);
 		return "added movie " + hp.getTitle() + " " + hp.getDuration();
 	}
 
