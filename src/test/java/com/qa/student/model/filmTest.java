@@ -2,13 +2,13 @@ package com.qa.student.model;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
-
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,13 +17,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.qa.student.rest.FilmService;
 @RunWith(MockitoJUnitRunner.class)
-
 public class filmTest {
 
 	@InjectMocks
-	FilmService filmService = new FilmService();
+	Film film = Mockito.mock(Film.class);
 	
 	@Mock
 	EntityManager em;
@@ -33,174 +31,87 @@ public class filmTest {
 	
 	@Test
 	public void testFilmTitle(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setTitle("cool runnings");
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).getTitle(), "cool runnings");
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		film.setTitle("cool runnings");
+		Mockito.when(film.getTitle()).thenReturn("cool runnings");
+		assertEquals(film.getTitle(), "cool runnings");
 	}
 
 	@Test
 	public void testFilmReleaseDate(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setReleaseDate("2016-12-03");
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).getReleaseDate(), "2016-12-03");
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(2016,02,03);
+		film.setReleaseDate(calendar);
+		Mockito.when(film.getReleaseDate()).thenReturn(calendar);
+		assertEquals(film.getReleaseDate(), calendar);
 	}
 	
 	@Test
 	public void testFilmDescription(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setDescription("A true classic");
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).getDescription(), "A true classic");
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		film.setDescription("A true classic");
+		Mockito.when(film.getDescription()).thenReturn("A true classic");
+		assertEquals(film.getDescription(), "A true classic");
 	}
 	
 	@Test
 	public void testFilmActorId(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setActorId(123456789);
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).getActorId(), 123456789);
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		Set<Actor> actors = new HashSet<Actor>();
+		Actor anActor = new Actor();
+		anActor.setFirstName("Bob");
+		film.setActors(actors);
+		Mockito.when(film.getActors()).thenReturn(actors);
+		Set<Actor> assertionSet = film.getActors();
+		Iterator<Actor> it = assertionSet.iterator();
+		Actor a = it.next();
+		assertEquals(a.getFirstName(), "Bob");
 	}
 	
 	@Test
 	public void testFilmClassification(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setClassification("PG");
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).getClassification(), "PG");
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		film.setClassification("PG");
+		Mockito.when(film.getClassification()).thenReturn("PG");
+		assertEquals(film.getClassification(), "PG");
 	}	
 	
 	@Test
 	public void testFilmDuration(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setDuration("1hour 30minutes");
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).getDuration(), "1hour 30minutes");
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		film.setDuration("150");
+		Mockito.when(film.getDuration()).thenReturn("150");
+		assertEquals(film.getDuration(), "150");
 	}	
 	
 	@Test
 	public void testFilmStarRating(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setStarRating(5);
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).getStarRating(), 5);
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		film.setStarRating(5);
+		Mockito.when(film.getStarRating()).thenReturn(5);
+		assertEquals(film.getStarRating(), 5);
 	}	
 	
 	@Test
 	public void testFilmGenre(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setGenre("Sports");
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).getGenre(), "Sports");
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		film.setGenre("comedy");
+		Mockito.when(film.getGenre()).thenReturn("comedy");
+		assertEquals(film.getGenre(), "comedy");
 	}	
 	
 	@Test
 	public void testFilmLanguage(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setLanguage("English");
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).getLanguage(), "English");
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		film.setLanguage("english");
+		Mockito.when(film.getLanguage()).thenReturn("english");
+		assertEquals(film.getLanguage(), "english");
 	}	
 	
 	@Test
 	public void testFilmSubtitle(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setSubtitle("Scottish");
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).getSubtitle(), "Scottish");
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		film.setSubtitle(false);
+		Mockito.when(film.getSubtitle()).thenReturn(false);
+		assertEquals(film.getSubtitle(), false);
 	}	
 	
 	@Test
 	public void testFilmAudioDescription(){
-		List<Film> filmList = new ArrayList<Film>();
-		Film aFilm = new Film();
-		aFilm.setAudioDescription(true);
-		filmList.add(aFilm);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(filmList);
-		
-		List<Film> assertionList = filmService.getAllFilms();
-		assertEquals(assertionList.get(0).isAudioDescription(), true);
-		Mockito.verify(em).createQuery(Mockito.anyString());
+		film.setAudioDescription(false);
+		Mockito.when(film.isAudioDescription()).thenReturn(false);
+		assertEquals(film.isAudioDescription(), false);
 	}	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

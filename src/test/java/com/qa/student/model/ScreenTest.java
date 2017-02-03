@@ -1,54 +1,57 @@
 package com.qa.student.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.junit.Assert;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+
 import com.qa.student.model.Screen;
-import com.qa.student.rest.ScreenService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ScreenTest {
 
 	@InjectMocks
-	ScreenService screenService = new ScreenService();
-	
+	Screen screen = Mockito.mock(Screen.class);
+
 	@Mock
 	EntityManager em;
-	
-	 @Mock
-	 Query query;
-	
+
+	@Mock
+	Query query;
+
 	@Test
-	public void TestScreen() {
-		List<Screen> screenList = new ArrayList<Screen>();
-		
-		Screen testScreen = new Screen();
-		testScreen.setScreenID(101L);
-		testScreen.setCinemaID(101L);
-		testScreen.setFilmID(101L);
-		testScreen.setEventID(101L);
-	
-		screenList.add(testScreen);
-		
-		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);		
-		Mockito.when(query.getResultList()).thenReturn(screenList);
-		
-		//test add functionality
-		List<Screen>assertionList = screenService.getAllScreens();
-		Assert.assertEquals(assertionList.get(0).getScreenID(), 101);
-		Assert.assertEquals(assertionList.get(0).getCinemaID(), 101);
-		Assert.assertEquals(assertionList.get(0).getFilmID(), 101);
-		Assert.assertEquals(assertionList.get(0).getEventID(), 101);
-	
-		//verify the behavior
-		Mockito.verify(em).createQuery(Mockito.anyString());		
+	public void getSetScreenID() {
+		screen.setScreenID(1);
+		Mockito.when(screen.getScreenID()).thenReturn((long) 1);
+		assertEquals(screen.getScreenID(), (long) 1);
 	}
+
+	@Test
+	public void getSetCinemaID() {
+		screen.setCinemaID(101L);
+		Mockito.when(screen.getCinemaID()).thenReturn((long) 1);
+		assertEquals(screen.getCinemaID(), (long) 1);
+	}
+
+	@Test
+	public void getSetFilmID() {
+		screen.setFilmID(1);
+		Mockito.when(screen.getFilmID()).thenReturn((long) 1);
+		assertEquals(screen.getFilmID(), (long) 1);
+	}
+
+	@Test
+	public void getSetEventID() {
+		screen.setEventID(1);
+		Mockito.when(screen.getEventID()).thenReturn((long) 1);
+		assertEquals(screen.getEventID(), (long) 1);
+	}
+
 }

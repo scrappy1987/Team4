@@ -16,7 +16,7 @@ public class Actor {
 
 		@Id
 		@GeneratedValue
-		private Long actorId;
+		private long actorId;
 		
 		@Column(name = "firstname")
 		private String firstName;
@@ -31,17 +31,17 @@ public class Actor {
 			
 		}
 		
-		public Actor(Long actorId, String firstName, String surname) {
+		public Actor(long actorId, String firstName, String surname) {
 			this.actorId = actorId;
 			this.firstName = firstName;
 			this.surname = surname;
 		}
 
-		public Long getActorId() {
+		public long getActorId() {
 			return actorId;
 		}
 
-		public void setActorId(Long actorId) {
+		public void setActorId(long actorId) {
 			this.actorId = actorId;
 		}
 

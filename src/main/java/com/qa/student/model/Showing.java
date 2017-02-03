@@ -15,41 +15,40 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Showing{
-	
+public class Showing {
+
 	@Id
 	@GeneratedValue
 	private long showingId;
 
 	@NotNull
 	@OneToOne
-	@JoinColumn(name="screenId")
+	@JoinColumn(name = "screenId")
 	private long screenId;
-	
+
 	@ManyToOne
-	@JoinColumn(name="eventId")
+	@JoinColumn(name = "eventId")
 	private long eventId;
-	
+
 	@ManyToOne
-	@JoinColumn(name="filmId")
+	@JoinColumn(name = "filmId")
 	private long filmId;
-	
 
 	@NotNull
 	private int seatId;
-	
+
 	@NotNull
 	private Date dateTime;
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Ticket> films = new HashSet<Ticket>();
-		
-	//Constructor
+
+	// Constructor
 	public Showing() {
 	}
-	
-		
-	public Showing(long showingId, long screenId, long eventId, long filmId, int seatId, Date dateTime) {
+
+	public Showing(long showingId, long screenId, long eventId, long filmId,
+			int seatId, Date dateTime) {
 		this.showingId = showingId;
 		this.screenId = screenId;
 		this.eventId = eventId;
@@ -58,9 +57,7 @@ public class Showing{
 		this.dateTime = dateTime;
 	}
 
-
-
-	//Getters and Setters
+	// Getters and Setters
 	public long getShowingId() {
 		return showingId;
 	}
@@ -117,12 +114,11 @@ public class Showing{
 		this.films = films;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Showing [showingId=" + showingId + ", screenId=" + screenId + ", eventId=" + eventId + ", filmId="
-				+ filmId + ", seatId=" + seatId + ", dateTime=" + dateTime + ", films=" + films + "]";
+		return "Showing [showingId=" + showingId + ", screenId=" + screenId
+				+ ", eventId=" + eventId + ", filmId=" + filmId + ", seatId="
+				+ seatId + ", dateTime=" + dateTime + ", films=" + films + "]";
 	}
 
-	
 }

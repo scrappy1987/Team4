@@ -16,7 +16,7 @@ import com.qa.student.model.Booking;
 @RunWith(MockitoJUnitRunner.class)
 public class BookingTest {
 	@InjectMocks
-	//Booking booking = new Booking();
+	// Booking booking = new Booking();
 	Booking booking = Mockito.mock(Booking.class);
 	@Mock
 	EntityManager em;
@@ -25,32 +25,30 @@ public class BookingTest {
 
 	@Test
 	public void getIdTest() {
-		Mockito.when(booking.getId()).thenReturn((long)1);
-		assertEquals(booking.getId(),1);
+		Mockito.when(booking.getId()).thenReturn((long) 1);
+		assertEquals(booking.getId(), 1);
 	}
-	
-@Test
+
+	@Test
 	public void setGetScreenId() {
-		booking.setScreenId((long)1);
-		Mockito.when(booking.getScreenId()).thenReturn((long)1);
-		assertEquals(booking.getScreenId(),1);
+		booking.setScreenId((long) 1);
+		Mockito.when(booking.getScreenId()).thenReturn((long) 1);
+		assertEquals(booking.getScreenId(), 1);
 	}
-	
+
 	@Test
 	public void setGetTickets() {
 		Set<Ticket> ticketList = new HashSet<Ticket>();
 		Ticket aTicket = new Ticket();
-		aTicket.setScreenId((long)1);
+		aTicket.setScreenId((long) 1);
 		ticketList.add(aTicket);
 		booking.setTickets(ticketList);
 		Mockito.when(booking.getTickets()).thenReturn(ticketList);
 		Set<Ticket> assertionSet = booking.getTickets();
 		java.util.Iterator<Ticket> i = assertionSet.iterator();
 		Ticket t = i.next();
-		assertEquals(t.getScreenId(),1);
+		assertEquals(t.getScreenId(), 1);
 
 	}
 
-	  
-	  
 }

@@ -18,31 +18,28 @@ public class Cinema {
 	@Id
 	@GeneratedValue
 	private long cinemaID;
-	
+
 	@NotNull
 	private String cinemaAddress;
-	
-	@NotNull 
+
+	@NotNull
 	private String cinemaContactNumber;
-	
+
 	@NotNull
 	private int cinemaScreenAmount;
-	
+
 	@NotNull
 	private String cinemaManager;
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Screen> screens = new HashSet<Screen>();
-	
-	
-	
-	public Cinema(){
-		
-	}
-	
-	
 
-	public Cinema(long cinemaID, String cinemaAddress, String cinemaContactNumber, int cinemaScreenAmount,
+	public Cinema() {
+
+	}
+
+	public Cinema(long cinemaID, String cinemaAddress,
+			String cinemaContactNumber, int cinemaScreenAmount,
 			String cinemaManager) {
 		this.cinemaID = cinemaID;
 		this.cinemaAddress = cinemaAddress;
@@ -50,8 +47,6 @@ public class Cinema {
 		this.cinemaScreenAmount = cinemaScreenAmount;
 		this.cinemaManager = cinemaManager;
 	}
-
-
 
 	public long getCinemaID() {
 		return cinemaID;
@@ -92,22 +87,22 @@ public class Cinema {
 	public void setCinemaManager(String cinemaManager) {
 		this.cinemaManager = cinemaManager;
 	}
-	
-	public Set<Screen> getScreens(){
+
+	public Set<Screen> getScreens() {
 		return screens;
 	}
-	
-	public void setScreens(Set<Screen> screen){
+
+	public void setScreens(Set<Screen> screen) {
 		this.screens = screen;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Cinema [cinemaID=" + cinemaID + ", cinemaAddress=" + cinemaAddress + ", cinemaContactNumber="
-				+ cinemaContactNumber + ", cinemaScreenAmount=" + cinemaScreenAmount + ", cinemaManager="
-				+ cinemaManager + ", screens=" + screens + "]";
+		return "Cinema [cinemaID=" + cinemaID + ", cinemaAddress="
+				+ cinemaAddress + ", cinemaContactNumber="
+				+ cinemaContactNumber + ", cinemaScreenAmount="
+				+ cinemaScreenAmount + ", cinemaManager=" + cinemaManager
+				+ ", screens=" + screens + "]";
 	}
-	
-	
+
 }

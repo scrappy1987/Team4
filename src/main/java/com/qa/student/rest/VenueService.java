@@ -12,7 +12,9 @@ import javax.ws.rs.core.MediaType;
 
 import com.qa.student.model.Venue;
 
-@Path("/venues")
+/*NOT USED!!*/
+
+@Path("/notusedvenues")
 @RequestScoped
 public class VenueService {
 

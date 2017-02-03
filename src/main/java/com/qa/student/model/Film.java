@@ -1,6 +1,6 @@
 package com.qa.student.model;
 
-
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,56 +17,57 @@ public class Film {
 	@Id
 	@GeneratedValue
 	private long filmId;
-	
+
 	@Column(name = "title")
 	private String title;
-	
+
 	@Column(name = "release_date")
-	private String releaseDate;
-	
+	private Calendar releaseDate;
+
 	@Column(name = "description")
 	private String description;
-	
-	@Column(name = "actor_id")
-	private long actorId;
-	
+
+	/*
+	 * @Column(name = "actor_id") private long actorId;
+	 */
+
 	@Column(name = "classification")
 	private String classification;
-	
+
 	@Column(name = "duration")
 	private String duration;
-	
-	@Column(name ="starRating")
+
+	@Column(name = "starRating")
 	private int starRating;
-	
+
 	@Column(name = "genre")
 	private String genre;
-	
+
 	@Column(name = "language")
 	private String language;
-	
+
 	@Column(name = "subtitle")
-	private String subtitle;
-	
+	private boolean subtitle;
+
 	@Column(name = "audioDescription")
 	private boolean audioDescription;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Actor> actors = new HashSet<Actor>();
-	
-	public Film(){
-		
+
+	public Film() {
+
 	}
-	
-	public Film(long filmId, String title, String releaseDate,
-			String description, long actorId, String classification,
-			String duration, int starRating, String genre, String language,
-			String subtitle, boolean audioDescription) {
+
+	public Film(long filmId, String title, Calendar releaseDate,
+			String description, String classification, String duration,
+			int starRating, String genre, String language, boolean subtitle,
+			boolean audioDescription) {
 		this.filmId = filmId;
 		this.title = title;
 		this.releaseDate = releaseDate;
 		this.description = description;
-		this.actorId = actorId;
+		// this.actorId = actorId;
 		this.classification = classification;
 		this.duration = duration;
 		this.starRating = starRating;
@@ -92,11 +93,11 @@ public class Film {
 		this.title = title;
 	}
 
-	public String getReleaseDate() {
+	public Calendar getReleaseDate() {
 		return releaseDate;
 	}
 
-	public void setReleaseDate(String releaseDate) {
+	public void setReleaseDate(Calendar releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 
@@ -108,13 +109,11 @@ public class Film {
 		this.description = description;
 	}
 
-	public long getActorId() {
-		return actorId;
-	}
-
-	public void setActorId(long actorId) {
-		this.actorId = actorId;
-	}
+	/*
+	 * public long getActorId() { return actorId; }
+	 * 
+	 * public void setActorId(long actorId) { this.actorId = actorId; }
+	 */
 
 	public String getClassification() {
 		return classification;
@@ -156,15 +155,14 @@ public class Film {
 		this.language = language;
 	}
 
-	public String getSubtitle() {
+	public boolean getSubtitle() {
 		return subtitle;
 	}
 
-	public void setSubtitle(String subtitle) {
+	public void setSubtitle(boolean subtitle) {
 		this.subtitle = subtitle;
 	}
 
-	
 	public boolean isAudioDescription() {
 		return audioDescription;
 	}
@@ -172,8 +170,6 @@ public class Film {
 	public void setAudioDescription(boolean audioDescription) {
 		this.audioDescription = audioDescription;
 	}
-
-	
 
 	public Set<Actor> getActors() {
 		return actors;
@@ -183,14 +179,15 @@ public class Film {
 		this.actors = actors;
 	}
 
+	// add to string for set of actors
 	@Override
 	public String toString() {
 		return "Film [filmId=" + filmId + ", title=" + title + ", releaseDate="
-				+ releaseDate + ", description=" + description + ", actorId="
-				+ actorId + ", classification=" + classification
-				+ ", duration=" + duration + ", starRating=" + starRating
-				+ ", genre=" + genre + ", language=" + language + ", subtitle="
-				+ subtitle + ", audioDescription=" + audioDescription + "]";
+				+ releaseDate.toString() + ", description=" + description
+				+ ", classification=" + classification + ", duration="
+				+ duration + ", starRating=" + starRating + ", genre=" + genre
+				+ ", language=" + language + ", subtitle=" + subtitle
+				+ ", audioDescription=" + audioDescription + "]";
 	}
-	
+
 }

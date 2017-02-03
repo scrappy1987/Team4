@@ -16,6 +16,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.qa.student.rest.ActorService;
+
 @RunWith(MockitoJUnitRunner.class)
 public class ActorServiceTest {
 
@@ -27,7 +28,7 @@ public class ActorServiceTest {
 	Query query;
 
 	@Test
-	public void test() {
+	public void getAllActorsTest() {
 		List<Actor> actorList = new ArrayList<Actor>();
 		Actor anActor = new Actor();
 		anActor.setFirstName("bob");

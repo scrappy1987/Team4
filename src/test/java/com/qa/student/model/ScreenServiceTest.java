@@ -1,12 +1,13 @@
 package com.qa.student.model;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,32 +15,31 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.qa.student.model.Ticket;
-import com.qa.student.rest.BookingService;
-
+import com.qa.student.rest.ScreenService;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BookingServiceTest {
+public class ScreenServiceTest {
+
 	@InjectMocks
-	BookingService bookingService = new BookingService();
+	ScreenService screenService = new ScreenService();
 	@Mock
 	EntityManager em;
 	@Mock
 	Query query;
 
 	@Test
-	public void getAllTicketsTest() {
-		List<Ticket> ticketList = new ArrayList<Ticket>();
-		Ticket aTicket = new Ticket();
-		aTicket.setCinemaId((long)1);
-		ticketList.add(aTicket);
+	public void getAllScreensTest() {
+		List<Screen> screenList = new ArrayList<Screen>();
+		Screen aScreen = new Screen();
+		aScreen.setCinemaID(1);
+		screenList.add(aScreen);
 		Mockito.when(em.createQuery(Mockito.anyString())).thenReturn(query);
-		Mockito.when(query.getResultList()).thenReturn(ticketList);
+		Mockito.when(query.getResultList()).thenReturn(screenList);
 		// test the add functionality
-		List<Ticket> assertionList = bookingService.getAllTickets();
-		Assert.assertEquals(assertionList.get(0).getCinemaId(), 1);
+		List<Screen> assertionList = screenService.getAllScreens();
+		assertEquals(assertionList.get(0).getCinemaID(), 1);
 		// verify the behavior
 		Mockito.verify(em).createQuery(Mockito.anyString());
 	}
-}
 
+}

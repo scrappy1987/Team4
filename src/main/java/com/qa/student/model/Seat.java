@@ -1,4 +1,5 @@
 package com.qa.student.model;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,21 +13,21 @@ public class Seat {
 	@Id
 	@GeneratedValue
 	private long seatId;
-	
-	@Column(name ="seatsNo")
-	private String seatNo;
-	
 
-	@Column(name ="standardseats")
+	@Column(name = "seatsNo")
+	private String seatNo;
+
+	@Column(name = "standardseats")
 	private boolean prioritySeats;
-	
+
 	@OneToOne
-	@JoinColumn(name="ticketId")
+	@JoinColumn(name = "ticketId")
 	private long ticketId;
 
-	public Seat(){
-		
+	public Seat() {
+
 	}
+
 	public Seat(long seatId, String seatNo, boolean prioritySeats, long ticketId) {
 		this.seatId = seatId;
 		this.seatNo = seatNo;
@@ -34,7 +35,6 @@ public class Seat {
 		this.ticketId = ticketId;
 	}
 
-	
 	public long getSeatId() {
 		return seatId;
 	}
@@ -42,16 +42,15 @@ public class Seat {
 	public void setSeatId(long seatId) {
 		this.seatId = seatId;
 	}
-	
+
 	public String getSeatNo() {
 		return seatNo;
-	}	
-	
+	}
+
 	public void setSeatNo(String seatNo) {
 		this.seatNo = seatNo;
 	}
-		
-	
+
 	public boolean getPrioritySeats() {
 		return prioritySeats;
 	}
@@ -68,11 +67,9 @@ public class Seat {
 		this.ticketId = ticketId;
 	}
 
-	
-	
 	@Override
 	public String toString() {
-		return "Seat [seatId=" + seatId + ", prioritySeats=" + prioritySeats + ", ticketId=" + ticketId
-				+ "]";
+		return "Seat [seatId=" + seatId + ", prioritySeats=" + prioritySeats
+				+ ", ticketId=" + ticketId + "]";
 	}
 }

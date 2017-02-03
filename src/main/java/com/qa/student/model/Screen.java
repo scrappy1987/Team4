@@ -26,8 +26,6 @@ public class Screen {
 	@JoinColumn(name="filmID")
 	private long filmID;
 	
-
-
 	@OneToOne
 	@JoinColumn(name="eventID")
 	private long eventID;

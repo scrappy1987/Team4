@@ -1,4 +1,5 @@
 package com.qa.student.rest;
+
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -15,13 +16,14 @@ import com.qa.student.model.Film;
 @RequestScoped
 public class FilmService {
 
-		@Inject
-		private EntityManager em;
+	@Inject
+	private EntityManager em;
 
-		@GET
-		@Produces(MediaType.APPLICATION_JSON)
-		public List<Film> getAllFilms() {
-			final List<Film> results = em.createQuery("select f from Film f order by f.title").getResultList();
-			return results;
-		}
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Film> getAllFilms() {
+		final List<Film> results = em.createQuery(
+				"select f from Film f order by f.title").getResultList();
+		return results;
 	}
+}
